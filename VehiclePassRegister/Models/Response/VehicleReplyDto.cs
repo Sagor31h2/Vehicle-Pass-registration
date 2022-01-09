@@ -1,7 +1,8 @@
-﻿namespace VehiclePassRegister.Models.Request
+﻿namespace VehiclePassRegister.Models.Response
 {
-    public class VechicleCreateDto
+    public class VehicleReplyDto
     {
+        public int Id { get; set; }
         public string VechicleNo { get; set; }
         public string DriverName { get; set; }
         public int DriverPhoneNo { get; set; }
