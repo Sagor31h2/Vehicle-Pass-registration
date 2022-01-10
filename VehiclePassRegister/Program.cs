@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using VehiclePassRegister.Data;
+using VehiclePassRegister.Repositories;
+using VehiclePassRegister.Repositories.IRepository;
+using VehiclePassRegister.Services;
+using VehiclePassRegister.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,10 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+//unit of work
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
