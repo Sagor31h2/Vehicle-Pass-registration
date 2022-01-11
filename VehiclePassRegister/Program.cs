@@ -4,6 +4,9 @@ using VehiclePassRegister.Repositories;
 using VehiclePassRegister.Repositories.IRepository;
 using VehiclePassRegister.Services;
 using VehiclePassRegister.Services.IServices;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using VehiclePassRegister.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,9 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+//mapper
+builder.Services.AddAutoMapper(typeof(VehicleProfile));
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

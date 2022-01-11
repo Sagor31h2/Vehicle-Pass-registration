@@ -5,6 +5,6 @@ namespace VehiclePassRegister.Services.IServices
 {
     public interface IVehicleService
     {
-        Task<IEnumerable<Vehicle>> GetAllVehicles();
+        Task<IEnumerable<VehicleReplyDto>> GetAllVehicles();
     }
 }

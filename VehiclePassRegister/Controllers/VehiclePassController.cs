@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VehiclePassRegister.Models;
+using VehiclePassRegister.Models.Response;
 using VehiclePassRegister.Services.IServices;
 
 namespace VehiclePassRegister.Controllers
@@ -16,13 +16,17 @@ namespace VehiclePassRegister.Controllers
             _unitOfWork = unitOfWork;
 
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vehicle>>> GetAllVehicles()
-        {
-            var vehicles = await _unitOfWork.vehicleService.GetAllVehicles();
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<VehicleReplyDto>>> GetAllVehicles()
+        {
+
+
+            var vehicles = await _unitOfWork.vehicleService
+                .GetAllVehicles();
 
             return Ok(vehicles);
+
         }
     }
 }
