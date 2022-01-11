@@ -11,17 +11,17 @@ namespace VehiclePassRegister.Services
 
         private readonly IVehicleRepository _vehicleRepo;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public VehicleService(IVehicleRepository vehicleRepo,IMapper mapper)
+        public VehicleService(IVehicleRepository vehicleRepo,IMapper mapper,IUnitOfWork unitOfWork)
         {
-
             _vehicleRepo = vehicleRepo;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         public async Task<IEnumerable<VehicleReplyDto>> GetAllVehicles()
         {
            
-
             var vehicle = await _vehicleRepo.GetAllVehicle();
             var MappedVehicle = _mapper.Map<IEnumerable<VehicleReplyDto>>(vehicle);
 

@@ -8,25 +8,21 @@ namespace VehiclePassRegister.Controllers
     [ApiController]
     public class VehiclePassController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IVehicleService _vehicleService;
 
 
-        public VehiclePassController(IUnitOfWork unitOfWork)
+        public VehiclePassController(IVehicleService vehicleService)
         {
-            _unitOfWork = unitOfWork;
-
+            _vehicleService = vehicleService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VehicleReplyDto>>> GetAllVehicles()
         {
+                var vehicles = await _vehicleService.GetAllVehicles();
 
-
-            var vehicles = await _unitOfWork.vehicleService
-                .GetAllVehicles();
-
-            return Ok(vehicles);
-
+                return Ok(vehicles);
+                  
         }
     }
 }
