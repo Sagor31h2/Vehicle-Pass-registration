@@ -1,18 +1,24 @@
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using VehiclePassRegister.Data;
+using VehiclePassRegister.Profiles;
 using VehiclePassRegister.Repositories;
 using VehiclePassRegister.Repositories.IRepository;
 using VehiclePassRegister.Services;
 using VehiclePassRegister.Services.IServices;
-using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using VehiclePassRegister.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+//add serilog
+builder.Host.UseSerilog((context, config) =>
+{
+    config.WriteTo.Console();
+    //config.WriteTo.File("H:/logvehicle/log.txt");
+});
 
 //Database string
 builder.Services.AddDbContext<DataContext>(options =>

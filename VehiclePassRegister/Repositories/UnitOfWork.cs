@@ -6,7 +6,7 @@ namespace VehiclePassRegister.Data
     {
         private readonly DataContext _dataContext;
 
-        public UnitOfWork(DataContext dataContext, IVehicleService vehicleService)
+        public UnitOfWork(DataContext dataContext)
         {
             _dataContext = dataContext;
 
