@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using VehiclePassRegister.Models;
+using VehiclePassRegister.Models.Request;
 using VehiclePassRegister.Models.Response;
 using VehiclePassRegister.Repositories.IRepository;
 using VehiclePassRegister.Services.IServices;
@@ -20,6 +22,7 @@ namespace VehiclePassRegister.Services
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
+
         public async Task<IEnumerable<VehicleReplyDto>> GetAllVehicles()
         {
 
@@ -34,8 +37,26 @@ namespace VehiclePassRegister.Services
 
                 return MappedVehicle;
             }
+        }
 
+        //Create 
 
+        public async Task CreateVehicleInfo(VehicleCreateDto vehicleCreateDto)
+        {
+            if (CreateVehicleInfo == null)
+            {
+                throw new Exception("Vehicle info is empty");
+                
+            }
+            var CtreateDto = _mapper.Map<Vehicle>(vehicleCreateDto);
+
+            await _vehicleRepo.CreateVehicleInfo(CtreateDto);
+
+            var save = await _unitOfWork.SaveAsync();
+            if (!save)
+            {
+                throw new Exception("error in saving");
+            }
         }
     }
 }

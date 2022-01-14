@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using VehiclePassRegister.Models;
+using VehiclePassRegister.Models.Request;
 using VehiclePassRegister.Models.Response;
 
 namespace VehiclePassRegister.Profiles
@@ -9,6 +10,7 @@ namespace VehiclePassRegister.Profiles
         public VehicleProfile()
         {
             CreateMap<Vehicle, VehicleReplyDto>();
+            CreateMap<VehicleCreateDto, Vehicle>();
         }
     }
 }

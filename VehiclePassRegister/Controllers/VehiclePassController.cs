@@ -17,20 +17,7 @@ namespace VehiclePassRegister.Controllers
             _vehicleService = vehicleService;
             _logger = logger;
         }
-        
-        //[HttpPost()]
-        //public async Task<IActionResult>CreateVehicleInfo([FromBody] VechicleCreateDto vechicleCreateDto)
-        //{
-        //    try
-        //    {
 
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VehicleReplyDto>>> GetAllVehicles()
@@ -49,6 +36,33 @@ namespace VehiclePassRegister.Controllers
 
             }
 
+        }
+
+        //create
+        [HttpPost()]
+        public async Task<IActionResult> CreateVehicleInfo([FromBody] VehicleCreateDto vehicleCreateDto)
+        {
+            try
+            {
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Vehicle model state is invalid");
+                    return BadRequest("Model state is invalid");
+
+                }
+                else
+                {
+                    await _vehicleService.CreateVehicleInfo(vehicleCreateDto);
+                    _logger.LogInformation("Vehicle info created");
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
     }
 }
