@@ -1,37 +1,18 @@
-using Microsoft.EntityFrameworkCore;
-using Serilog;
-using VehiclePassRegister.Data;
-using VehiclePassRegister.Profiles;
-using VehiclePassRegister.Repositories;
-using VehiclePassRegister.Repositories.IRepository;
-using VehiclePassRegister.Services;
-using VehiclePassRegister.Services.IServices;
+using VehiclePassRegister.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var _configure = builder.Configuration;
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-//add serilog
-builder.Host.UseSerilog((context, config) =>
-{
-    config.WriteTo.Console();
-    //config.WriteTo.File("H:/logvehicle/log.txt");
-});
-
-//Database string
-builder.Services.AddDbContext<DataContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
-//unit of work
-builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
-builder.Services.AddScoped<IVehicleService, VehicleService>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-//mapper
-builder.Services.AddAutoMapper(typeof(VehicleProfile));
-
+//Add from extention method starts here
+builder.Host.ConfigureLogger();
+builder.Services.ConfigureAppServices();
+builder.Services.ConfigureDataAccess(_configure);
+//end here
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
