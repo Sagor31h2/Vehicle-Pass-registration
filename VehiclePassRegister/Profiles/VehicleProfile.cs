@@ -11,6 +11,8 @@ namespace VehiclePassRegister.Profiles
         {
             CreateMap<Vehicle, VehicleReplyDto>();
             CreateMap<VehicleCreateDto, Vehicle>();
+            CreateMap<VehicleUpdateDto, Vehicle>();
+
         }
     }
 }

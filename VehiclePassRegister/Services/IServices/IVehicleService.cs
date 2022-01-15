@@ -9,5 +9,8 @@ namespace VehiclePassRegister.Services.IServices
         Task<IEnumerable<VehicleReplyDto>> GetAllVehicles();
 
         Task CreateVehicleInfo(VehicleCreateDto vechicleCreateDto);
+        Task<VehicleReplyDto> VehicleGetById(int id);
+        Task UpdateVehicle(int id, VehicleUpdateDto updateDto);
+        Task DeleteVehicle(int id);
     }
 }

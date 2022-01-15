@@ -64,5 +64,68 @@ namespace VehiclePassRegister.Controllers
                 return BadRequest();
             }
         }
+
+        //GetbyId
+        [HttpGet("{id}", Name = "GetVehicleById")]
+        public async Task<ActionResult<VehicleReplyDto>> VehicleGetById(int id)
+        {
+            try
+            {
+                var vehiclebyid = await _vehicleService.VehicleGetById(id);
+                _logger.LogInformation($"Vehicle details with id:{ id}");
+                return Ok(vehiclebyid);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Internal server error");
+
+            }
+        }
+
+        //update
+        [HttpPut("{id}", Name = "Update")]
+        public async Task<IActionResult> UpdateVehicle(int id, [FromBody] VehicleUpdateDto updateDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("vehicle modestate is invalid");
+                    return BadRequest();
+                }
+                else
+                {
+                    await _vehicleService.UpdateVehicle(id, updateDto);
+                    _logger.LogInformation($"vehile id : {id} is updated ");
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+        }
+
+        //Delete
+        [HttpDelete("{id}", Name = "Delete")]
+        public async Task<IActionResult> DeleteVehicle(int id)
+        {
+            try
+            {
+                await _vehicleService.DeleteVehicle(id);
+                _logger.LogInformation($"vehicle information with id: {id} is deleted");
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+        }
+
     }
 }

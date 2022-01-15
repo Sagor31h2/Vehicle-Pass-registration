@@ -7,6 +7,8 @@ namespace VehiclePassRegister.Repositories.IRepository
 
         Task<IEnumerable<Vehicle>> GetAllVehicle();
         Task CreateVehicleInfo(Vehicle vehicle);
+        Task<Vehicle> VehicleGetById(int id);
+        void DeleteVehicle(Vehicle vehicle);
 
     }
 }

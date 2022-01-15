@@ -46,7 +46,7 @@ namespace VehiclePassRegister.Services
             if (CreateVehicleInfo == null)
             {
                 throw new Exception("Vehicle info is empty");
-                
+
             }
             var CtreateDto = _mapper.Map<Vehicle>(vehicleCreateDto);
 
@@ -57,6 +57,58 @@ namespace VehiclePassRegister.Services
             {
                 throw new Exception("error in saving");
             }
+        }
+
+        //GetById
+        public async Task<VehicleReplyDto> VehicleGetById(int id)
+        {
+            var findVehicle = await FindVehicle(id);
+            if (findVehicle == null)
+            {
+                throw new Exception("Cant find vehicle");
+
+            }
+            else
+            {
+                var mappedVehicle = _mapper.Map<VehicleReplyDto>(findVehicle);
+                return mappedVehicle;
+
+            }
+        }
+
+        //update 
+        public async Task UpdateVehicle(int id, VehicleUpdateDto updateDto)
+        {
+            var findVehicle = await FindVehicle(id);
+
+            _mapper.Map(updateDto, findVehicle);
+
+            var save = await _unitOfWork.SaveAsync();
+            if (!save)
+            {
+                throw new Exception("cant save");
+            }
+        }
+
+        //Delete
+        public async Task DeleteVehicle(int id)
+        {
+            var findVehicle = await FindVehicle(id);
+            _vehicleRepo.DeleteVehicle(findVehicle);
+
+            var save = await _unitOfWork.SaveAsync();
+            if (!save)
+            {
+                throw new Exception("cant Delete");
+            }
+
+        }
+
+
+        //find vehicle
+        private async Task<Vehicle> FindVehicle(int id)
+        {
+            return await _vehicleRepo.VehicleGetById(id);
         }
     }
 }

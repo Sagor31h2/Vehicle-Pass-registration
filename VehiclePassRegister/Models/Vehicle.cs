@@ -9,7 +9,10 @@ namespace VehiclePassRegister.Models
 
         [Required]
         public string VechicleNo { get; set; }
+
+        [Required]
         public string DriverName { get; set; }
+        [Required]
         public int DriverPhoneNo { get; set; }
         public DateTime PassingTime { get; set; } = DateTime.UtcNow;
 

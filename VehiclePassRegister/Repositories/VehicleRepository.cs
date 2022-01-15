@@ -24,5 +24,17 @@ namespace VehiclePassRegister.Repositories
         {
             await _dataContext.Vehicles.AddAsync(vehicle);
         }
+
+        //getby Id
+        public async Task<Vehicle> VehicleGetById(int id)
+        {
+            return await _dataContext.Vehicles.FirstOrDefaultAsync(v => v.Id == id);
+        }
+        //Delete
+        public void DeleteVehicle(Vehicle vehicle)
+        {
+            
+            _dataContext.Vehicles.Remove(vehicle);
+        }
     }
 }
