@@ -27,6 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//Adding exception middleware
+app.ConfigureExpectionMiddleware();
+
 app.UseAuthorization();
 
 app.MapControllers();

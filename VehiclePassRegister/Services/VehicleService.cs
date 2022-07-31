@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using VehiclePassRegister.Exceptions;
 using VehiclePassRegister.Models;
 using VehiclePassRegister.Models.Request;
 using VehiclePassRegister.Models.Response;
@@ -29,7 +30,7 @@ namespace VehiclePassRegister.Services
             var vehicle = await _vehicleRepo.GetAllVehicle();
             if (vehicle == null)
             {
-                throw new Exception("Cant find the vehicles from data base");
+                throw new AppException("Cant find the vehicles from data base");
             }
             else
             {
@@ -45,7 +46,7 @@ namespace VehiclePassRegister.Services
         {
             if (CreateVehicleInfo == null)
             {
-                throw new Exception("Vehicle info is empty");
+                throw new AppException("Vehicle info is empty");
 
             }
             var CtreateDto = _mapper.Map<Vehicle>(vehicleCreateDto);
@@ -55,7 +56,7 @@ namespace VehiclePassRegister.Services
             var save = await _unitOfWork.SaveAsync();
             if (!save)
             {
-                throw new Exception("error in saving");
+                throw new AppException("error in saving");
             }
         }
 
@@ -65,7 +66,7 @@ namespace VehiclePassRegister.Services
             var findVehicle = await FindVehicle(id);
             if (findVehicle == null)
             {
-                throw new Exception("Cant find vehicle");
+                throw new KeyNotFoundException("Cant find vehicle");
 
             }
             else
@@ -86,7 +87,7 @@ namespace VehiclePassRegister.Services
             var save = await _unitOfWork.SaveAsync();
             if (!save)
             {
-                throw new Exception("cant save");
+                throw new AppException("cant save");
             }
         }
 
@@ -99,7 +100,7 @@ namespace VehiclePassRegister.Services
             var save = await _unitOfWork.SaveAsync();
             if (!save)
             {
-                throw new Exception("cant Delete");
+                throw new AppException("cant Delete");
             }
 
         }

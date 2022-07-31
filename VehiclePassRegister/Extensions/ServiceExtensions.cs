@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Serilog;
 using VehiclePassRegister.Data;
+using VehiclePassRegister.Middlewares;
 using VehiclePassRegister.Profiles;
 using VehiclePassRegister.Repositories;
 using VehiclePassRegister.Repositories.IRepository;
@@ -39,5 +40,11 @@ namespace VehiclePassRegister.Extensions
             });
         }
 
+        //ExpceptionMiddleware
+
+        public static void ConfigureExpectionMiddleware(this WebApplication app)
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
+        }
     }
 }
