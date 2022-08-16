@@ -1,10 +1,14 @@
 global using AutoMapper;
 global using FluentAssertions;
+global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Logging;
 global using Moq;
+global using VehiclePassRegister.Controllers;
 global using VehiclePassRegister.Data;
 global using VehiclePassRegister.Exceptions;
 global using VehiclePassRegister.Models;
+global using VehiclePassRegister.Models.Response;
 global using VehiclePassRegister.Profiles;
 global using VehiclePassRegister.Repositories;
 global using VehiclePassRegister.Repositories.IRepository;
