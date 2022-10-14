@@ -18,6 +18,19 @@ builder.Services.ConfigureDataAccess(_configure);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//cores
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200/")
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +42,9 @@ if (app.Environment.IsDevelopment())
 
 //Adding exception middleware
 app.ConfigureExpectionMiddleware();
+
+//cores
+app.UseCors();
 
 app.UseAuthorization();
 
