@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class VehiclepassService {
-  private vehicleUrl: string = '/.vscode/vehiclepass.json';
-  // http://localhost:5125/api/vehiclepass/';
+  private vehicleUrl: string = 'http://localhost:5125/api/vehiclepass/';
 
   constructor(private http: HttpClient) {}
 
