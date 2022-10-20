@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VhiclePassHomeComponent } from './components/vhicle-pass-home/vhicle-pass-home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreatevehicleComponent } from './components/createvehicle/createvehicle.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, VhiclePassHomeComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, VhiclePassHomeComponent, CreatevehicleComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [VehiclepassService],
   bootstrap: [AppComponent],
 })
