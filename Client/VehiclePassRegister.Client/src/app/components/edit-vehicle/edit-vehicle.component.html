@@ -1,0 +1,45 @@
+<div class="container">
+  <form #userForm="ngForm" (ngSubmit)="submit()">
+    <div class="form-group mb-2">
+      <label>Vehicle No</label>
+      <input
+        type="text"
+        name="vehicleNo"
+        class="form-control"
+        disabled
+        [(ngModel)]="vehicle.vechicleNo"
+      />
+    </div>
+
+    <div class="form-group mb-2">
+      <label>Driver Name</label>
+      <input
+        type="text"
+        name="Driver"
+        class="form-control"
+        [(ngModel)]="vehicle.driverName"
+      />
+    </div>
+
+    <div class="form-group mb-2">
+      <label>Phone No</label>
+      <input
+        type="text"
+        name="phone"
+        class="form-control"
+        [(ngModel)]="vehicle.driverPhoneNo"
+      />
+    </div>
+    <div class="form-group mb-2">
+      <label>Passing Time</label>
+      <input
+        type="text"
+        name="passingTime"
+        class="form-control"
+        [(ngModel)]="vehicle.passingTime"
+        disabled
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

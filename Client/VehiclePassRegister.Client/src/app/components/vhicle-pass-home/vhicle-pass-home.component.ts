@@ -13,8 +13,13 @@ export class VhiclePassHomeComponent implements OnInit {
 
   constructor(private _vehicleService: VehiclepassService) {}
   getAllVehicles(): void {
-    this._vehicleService.getAllVehicle().subscribe((listOfVehicles) => {
-      this.vehicles = listOfVehicles;
+    this._vehicleService.getAllVehicle().subscribe({
+      next: (list) => {
+        this.vehicles = list;
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
   ngOnInit(): void {

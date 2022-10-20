@@ -2,6 +2,6 @@ export interface getVehicle {
   id: number;
   vechicleNo: string;
   driverName: string;
-  driverPhoneNO: number;
+  driverPhoneNo: number;
   passingTime: number;
 }

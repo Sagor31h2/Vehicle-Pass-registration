@@ -1,3 +1,4 @@
+import { Router, RouterModule } from '@angular/router';
 import { VehiclepassService } from './../../services/vehiclepass.service';
 import { CreateVehicle } from './../../models/request/createVehicle';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./createvehicle.component.css'],
 })
 export class CreatevehicleComponent implements OnInit {
-  constructor(private service: VehiclepassService) {}
+  constructor(private service: VehiclepassService, private router: Router) {}
 
   ngOnInit(): void {}
   createVehicle: CreateVehicle = {
@@ -22,6 +23,7 @@ export class CreatevehicleComponent implements OnInit {
     this.service.postVehicle(this.createVehicle).subscribe({
       next: (value) => {
         console.log(value);
+        this.router.navigate(['/getall']);
       },
     });
   }

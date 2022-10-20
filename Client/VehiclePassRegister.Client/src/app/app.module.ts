@@ -8,9 +8,10 @@ import { VhiclePassHomeComponent } from './components/vhicle-pass-home/vhicle-pa
 import { HttpClientModule } from '@angular/common/http';
 import { CreatevehicleComponent } from './components/createvehicle/createvehicle.component';
 import { FormsModule } from '@angular/forms';
+import { EditVehicleComponent } from './components/edit-vehicle/edit-vehicle.component';
 
 @NgModule({
-  declarations: [AppComponent, VhiclePassHomeComponent, CreatevehicleComponent],
+  declarations: [AppComponent, VhiclePassHomeComponent, CreatevehicleComponent, EditVehicleComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [VehiclepassService],
   bootstrap: [AppComponent],

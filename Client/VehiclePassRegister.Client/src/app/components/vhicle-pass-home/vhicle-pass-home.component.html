@@ -1,7 +1,7 @@
 <div class="container">
   <Div class="mb-3 float-end">
     <button class="btn btn-primary" routerLink="/create">
-      Add Entry <i class="bi bi-file-plus"></i>
+      Add Entry <i class="fa-solid fa-plus"></i>
     </button>
   </Div>
   <table class="table table-primary table-bordered">
@@ -11,6 +11,7 @@
         <th>Driver Name</th>
         <th>Phone Number</th>
         <th>Passing Time</th>
+        <th>Edit</th>
       </tr>
     </thead>
 
@@ -18,8 +19,13 @@
       <tr *ngFor="let item of vehicles">
         <td>{{ item.vechicleNo }}</td>
         <td>{{ item.driverName }}</td>
-        <td>{{ item.driverPhoneNO }}</td>
+        <td>{{ item.driverPhoneNo }}</td>
         <td>{{ item.passingTime }}</td>
+        <td>
+          <a [routerLink]="['/updatevehicle', item.id]">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>
