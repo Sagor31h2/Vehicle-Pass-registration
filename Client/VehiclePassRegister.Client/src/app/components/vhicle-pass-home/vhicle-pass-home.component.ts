@@ -22,6 +22,15 @@ export class VhiclePassHomeComponent implements OnInit {
       },
     });
   }
+
+  delete(id: number) {
+    this._vehicleService.deleteVehicleEntry(id).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+    });
+  }
+
   ngOnInit(): void {
     this.getAllVehicles();
   }

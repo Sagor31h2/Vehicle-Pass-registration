@@ -12,6 +12,7 @@
         <th>Phone Number</th>
         <th>Passing Time</th>
         <th>Edit</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -25,6 +26,15 @@
           <a [routerLink]="['/updatevehicle', item.id]">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="delete(item.id)"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>

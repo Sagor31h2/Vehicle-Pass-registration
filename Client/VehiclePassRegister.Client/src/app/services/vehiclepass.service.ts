@@ -20,7 +20,9 @@ export class VehiclepassService {
   }
 
   postVehicle(createVehicle: CreateVehicle): Observable<CreateVehicle> {
-    return this.http.post<CreateVehicle>(this.vehicleUrl, createVehicle);
+    return this.http
+      .post<CreateVehicle>(this.vehicleUrl, createVehicle)
+      .pipe(catchError(this.errorHandler));
   }
 
   getbyId(id: number): Observable<getVehicle> {
@@ -33,9 +35,29 @@ export class VehiclepassService {
     id: number,
     updateVehicle: updateVehicle
   ): Observable<updateVehicle> {
-    return this.http.put<updateVehicle>(this.vehicleUrl + id, updateVehicle);
+    return this.http
+      .put<updateVehicle>(this.vehicleUrl + id, updateVehicle)
+      .pipe(catchError(this.errorHandler));
   }
-  errorHandler(err: HttpErrorResponse) {
-    return throwError(err);
+
+  //delete
+  deleteVehicleEntry(id: number): Observable<getVehicle> {
+    return this.http
+      .delete<getVehicle>(this.vehicleUrl + id)
+      .pipe(catchError(this.errorHandler));
+  }
+  errorHandler(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(() => {
+      return errorMessage;
+    });
   }
 }
